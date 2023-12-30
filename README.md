@@ -1,7 +1,14 @@
-# Introduction
+# nvisia (n)Ternship
+
+### Winter 2023
+
+## Nvisia Profile Service API
+
 The Profile Service is part of a larger project that will store employee profiles. These profiles can be output as one-pagers that can then be distributed.
 
-# Getting Started
+Nvisia is a software consulting company (SaaS) based out of Chicago. The project is hosted by Azure Cloud Computing Services and managed by a Kubernetes cluster. The motivation behind this project is to facilitate the ease of marketing nvisia's consultants to potential clients by reducing the manual and often tedious modifications that need to be done on a regular basis to appeal to any particular client. Note that this project is still in development and unavailable to the public.
+
+## Getting Started
 1.	Installation process
       Required:
 - .NET Core 8
@@ -21,7 +28,7 @@ The Profile Service is part of a larger project that will store employee profile
 4.	API references
 - The application uses swagger to expose the APIs locally.
 
-# Build and Test
+## Build and Test
 <b>Make sure you have run dotnet dev-certs https --trust<b>
 
 Running:
