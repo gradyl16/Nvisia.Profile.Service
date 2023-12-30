@@ -1,0 +1,20 @@
+---
+apiVersion: skaffold/v4beta6
+kind: Config
+
+metadata:
+  name: skaffold-int23-react-profile-service-api
+
+profiles:
+- name: local
+  build:
+    artifacts:
+    - image: skaffold-int23-react-profile-service-api-local
+      docker:
+        dockerfile: Dockerfile
+  manifests:
+    kustomize:
+      paths:
+      - ./_deploy/kustomize/overlays/local
+  deploy:
+    kubeContext: docker-desktop

@@ -1,0 +1,749 @@
+openapi: 3.0.1
+info:
+  title: Nvisia.Profile.Service
+  version: 1.0.0
+paths:
+  /certification/batch:
+    put:
+      tags:
+        - Certification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchCertificationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BatchCertificationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BatchCertificationRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCertificationResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCertificationResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateCertificationResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /education/batch:
+    put:
+      tags:
+        - Education
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchEducationRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BatchEducationRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BatchEducationRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateEducationResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateEducationResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateEducationResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /highlight/batch:
+    put:
+      tags:
+        - Highlight
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchHighlightRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BatchHighlightRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BatchHighlightRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateHighlightResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateHighlightResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateHighlightResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /profile/{id}:
+    get:
+      tags:
+        - Profile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /profile:
+    get:
+      tags:
+        - Profile
+      parameters:
+        - name: email
+          in: query
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GetProfileResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    post:
+      tags:
+        - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/CreateProfileRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreateProfileResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreateProfileResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+        - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /profile/about:
+    put:
+      tags:
+        - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAboutMeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAboutMeRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateAboutMeRequest'
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /skill/batch:
+    put:
+      tags:
+        - Skill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchSkillRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/BatchSkillRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/BatchSkillRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateSkillResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateSkillResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateSkillResponse'
+        '400':
+          description: Bad Request
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /skillcode:
+    get:
+      tags:
+        - SkillCode
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkillCodeResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkillCodeResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkillCodeResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /titlecode:
+    get:
+      tags:
+        - TitleCode
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TitleCodeResponse'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TitleCodeResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TitleCodeResponse'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    BatchCertificationRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        certifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificationRequest'
+          nullable: true
+      additionalProperties: false
+    BatchEducationRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        educations:
+          type: array
+          items:
+            $ref: '#/components/schemas/EducationRequest'
+          nullable: true
+      additionalProperties: false
+    BatchHighlightRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/HighlightRequest'
+          nullable: true
+      additionalProperties: false
+    BatchSkillRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillRequest'
+          nullable: true
+      additionalProperties: false
+    CertificationRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        year:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateCertificationResponse:
+      type: object
+      properties:
+        certificationId:
+          type: integer
+          format: int32
+        title:
+          type: string
+          nullable: true
+        year:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateEducationResponse:
+      type: object
+      properties:
+        educationId:
+          type: integer
+          format: int32
+        schoolName:
+          type: string
+          nullable: true
+        graduationYear:
+          type: integer
+          format: int32
+        majorDegreeName:
+          type: string
+          nullable: true
+        minorDegreeName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateHighlightResponse:
+      type: object
+      properties:
+        highlightId:
+          type: integer
+          format: int32
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        titleCodeId:
+          type: integer
+          format: int32
+        yearsOfExperience:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CreateProfileResponse:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        titleCodeId:
+          type: integer
+          format: int32
+        yearsOfExperience:
+          type: integer
+          format: int32
+        aboutMe:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CreateSkillResponse:
+      type: object
+      properties:
+        skillId:
+          type: integer
+          format: int32
+        skillCodeId:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    EducationRequest:
+      type: object
+      properties:
+        schoolName:
+          type: string
+          nullable: true
+        graduationYear:
+          type: integer
+          format: int32
+        majorDegreeName:
+          type: string
+          nullable: true
+        minorDegreeName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    GetProfileResponse:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        yearsOfExperience:
+          type: integer
+          format: int32
+        aboutMe:
+          type: string
+          nullable: true
+        titleCode:
+          $ref: '#/components/schemas/TitleCodeResponse'
+        certifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateCertificationResponse'
+          nullable: true
+        educations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateEducationResponse'
+          nullable: true
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateHighlightResponse'
+          nullable: true
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateSkillResponse'
+          nullable: true
+      additionalProperties: false
+    HighlightRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties: { }
+    SkillCodeResponse:
+      type: object
+      properties:
+        skillCodeId:
+          type: integer
+          format: int32
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SkillRequest:
+      type: object
+      properties:
+        skillCodeId:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TitleCodeResponse:
+      type: object
+      properties:
+        titleCodeId:
+          type: integer
+          format: int32
+        code:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateAboutMeRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        aboutMe:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UpdateProfileRequest:
+      type: object
+      properties:
+        profileId:
+          type: integer
+          format: int32
+        firstName:
+          type: string
+          nullable: true
+        lastName:
+          type: string
+          nullable: true
+        emailAddress:
+          type: string
+          nullable: true
+        titleCodeId:
+          type: integer
+          format: int32
+        yearsOfExperience:
+          type: integer
+          format: int32
+      additionalProperties: false

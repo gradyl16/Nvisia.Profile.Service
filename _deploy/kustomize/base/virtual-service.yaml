@@ -1,0 +1,19 @@
+---
+# API SERVICE VIRTUAL SERVICE MANIFEST
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+
+metadata:
+  name: profile-service-api
+
+spec:
+  http:
+  - name: profile-service-api
+    match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: profile-service-api
+        port:
+          number: 8080

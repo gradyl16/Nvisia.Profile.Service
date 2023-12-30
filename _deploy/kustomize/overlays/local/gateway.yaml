@@ -1,0 +1,18 @@
+---
+# LOCAL ISTIO GATEWAY MANIFEST
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+
+metadata:
+  name: local-gateway
+
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      name: localhost-80
+      number: 80
+      protocol: HTTP
+    hosts:
+    - '*'

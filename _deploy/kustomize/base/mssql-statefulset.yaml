@@ -1,0 +1,61 @@
+---
+# MSSQL STATEFULSET MANIFEST
+apiVersion: apps/v1
+kind: StatefulSet
+
+metadata:
+  name: mssql-profile-db
+  labels:
+    app.kubernetes.io/name: mssql-profile-db
+spec:
+  replicas: 1
+  serviceName: mssql-profile-db
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mssql-profile-db
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mssql-profile-db
+    spec:
+      containers:
+      - name: database
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        command:
+        - /bin/sh
+        - /var/opt/mssql/entrypoint.sh
+        volumeMounts:
+        - name: mssql-profile-db-setup-cm
+          mountPath: /var/opt/mssql/entrypoint.sh
+          subPath: entrypoint.sh
+          readOnly: true
+        - name: mssql-profile-db-setup-cm
+          mountPath: /var/opt/mssql/init-db.sh
+          subPath: init-db.sh
+          readOnly: true
+        - name: mssql-profile-db-setup-cm
+          mountPath: /var/opt/mssql/schema.sql
+          subPath: schema.sql
+        env:
+        - name: ACCEPT_EULA
+          value: 'Y'
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mssql-profile-db-secret
+              key: sa_password
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1Gi
+        ports:
+        - containerPort: 1433
+      volumes:
+      - name: mssql-profile-db-setup-cm
+        configMap:
+          name: mssql-profile-db-setup-cm
+          defaultMode: 0744
+      - name: pvc-mssql-profile-db-data
+        persistentVolumeClaim:
+          claimName: pvc-mssql-profile-db-data
+          readOnly: false

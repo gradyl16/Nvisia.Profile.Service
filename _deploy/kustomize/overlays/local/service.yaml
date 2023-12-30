@@ -1,0 +1,15 @@
+---
+# MSSQL DB SERVICE PATCH
+# Allows comms with MSSQL DB internal to local cluster
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mssql-profile-db
+spec:
+  selector:
+    app.kubernetes.io/name: mssql-profile-db
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433

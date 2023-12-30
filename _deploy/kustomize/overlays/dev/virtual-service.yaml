@@ -1,0 +1,14 @@
+---
+# API BACKEND VIRTUAL SERVICE PATCH
+# Exposes API backend to internal network
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+
+metadata:
+  name: profile-service-api
+
+spec:
+  gateways:
+  - istio-system/ingress-gateway
+  hosts:
+  - profile-service-api-dev-uscz.internship-2023.az-internal.nvisia.io

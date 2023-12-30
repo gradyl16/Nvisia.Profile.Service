@@ -1,0 +1,15 @@
+---
+# MSSQL DB SERVICE MANIFEST
+# Enables accessibility of mssql db from inside the cluster
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mssql-profile-db-service
+spec:
+  selector:
+    app.kubernetes.io/name: mssql-profile-db
+  ports:
+  - protocol: TCP
+    port: 1433
+    targetPort: 1433

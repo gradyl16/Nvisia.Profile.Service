@@ -1,0 +1,45 @@
+---
+# API SERVICE DEPLOYMENT PATCH
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-service-api
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        image: profile-service-api-img
+        env:
+          - name: ConnectionStrings__DefaultConnection
+            valueFrom:
+              secretKeyRef:
+                name: mssql-profile-db-secret
+                key: ConnectionStrings__DefaultConnection
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: Datasource__Server
+            value: mssql-profile-db-service
+          - name: Datasource__Database
+            value: consultant-profile-db
+          - name: Datasource__User
+            value: sa
+          - name: Datasource__Password
+            valueFrom:
+              secretKeyRef:
+                name: mssql-profile-db-secret
+                key: sa_password
+      tolerations:
+        - key: kubernetes.azure.com/scalesetpriority
+          operator: Equal
+          value: spot
+          effect: NoSchedule
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.azure.com/scalesetpriority
+                    operator: In
+                    values:
+                      - spot

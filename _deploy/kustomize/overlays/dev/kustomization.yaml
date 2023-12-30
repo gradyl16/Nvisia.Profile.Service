@@ -1,0 +1,28 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: develop
+
+images:
+- name: profile-service-api-img
+  newName: nvisia/internship-2023-api-backend
+
+resources:
+  - service.yaml
+  - pvc.yaml
+  - ../../base
+
+patches:
+- target:
+    kind: Deployment
+    name: profile-service-api
+  path: deployment.yaml
+- target:
+    kind: StatefulSet
+    name: mssql-profile-db
+  path: mssql-statefulset.yaml
+- target:
+    kind: VirtualService
+    name: profile-service-api
+  path: virtual-service.yaml

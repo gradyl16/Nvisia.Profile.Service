@@ -1,0 +1,34 @@
+---
+# MSSQL DATA PERSISTENT VOLUME MANIFEST
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mssql-profile-db-data
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    # Uncomment this line and replace it with the path where you want to store data
+    # Example...
+    # path: /home/username/path/to/project/parent/Nvisia.Profile.Service/local-db-setup/
+    path: /home/odysseus/nvisia/profile-builder/Nvisia.Profile.Service/local-db-setup
+
+---
+# MSSQL DATA PERSISTENT VOLUME CLAIM MANIFEST
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-mssql-profile-db-data
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  volumeName: pv-mssql-profile-db-data
+  resources:
+    requests:
+      storage: 256Mi

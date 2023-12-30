@@ -1,0 +1,38 @@
+---
+# MSSQL DATA PERSISTENT VOLUME MANIFEST
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-mssql-profile-db-data
+spec:
+  capacity:
+    storage: 256Mi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: azurefile-csi
+  csi:
+    driver: file.csi.azure.com
+    readOnly: true
+    volumeHandle: pv-mssql-profile-db-data-01
+    volumeAttributes:
+      server: sadfint23devuscz.file.core.windows.net
+      storageAccount: sadfint23devuscz
+      subscriptionID: e422d71b-0c1f-4e50-bf8b-88bf1f991f86
+      resourceGroup: rg-apps-uscz
+      shareName: mssql-profile-db-share
+
+---
+# MSSQL DATA PERSISTENT VOLUME CLAIM MANIFEST
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-mssql-profile-db-data
+spec:
+  storageClassName: azurefile-csi
+  accessModes:
+    - ReadWriteMany
+  volumeName: pv-mssql-profile-db-data
+  resources:
+    requests:
+      storage: 256Mi
